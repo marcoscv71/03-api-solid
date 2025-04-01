@@ -1,7 +1,7 @@
 import type { UsersRepository } from "@/repositories/users-repository";
 import { hash } from "bcryptjs";
 import { UserAlreadyExistsError } from "./errors/user-already-exists";
-import type { User } from "@prisma/client";
+import { User } from "@prisma/client";
 
 interface RegisterUseCaseRequest {
   name: string;
@@ -9,7 +9,7 @@ interface RegisterUseCaseRequest {
   password: string;
 }
 
-interface RegisterUserCaseResponse {
+interface RegisterUseCaseResponse {
   user: User;
 }
 
@@ -19,7 +19,7 @@ export class RegisterUseCase {
     name,
     email,
     password,
-  }: RegisterUseCaseRequest): Promise<RegisterUserCaseResponse> {
+  }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     // Gera um hash da senha do usuario
     const password_hash = await hash(password, 6);
 
